@@ -23,7 +23,7 @@
       "camelCase"
     ],
     "component-selector": [
-      true,
+      false,
       "element",
       "app",
       "kebab-case"
@@ -115,7 +115,7 @@
     "variable-name": {
       "options": [
         "ban-keywords",
-        "check-format",
+        // "check-format",
         "allow-pascal-case"
       ]
     },
@@ -141,7 +141,12 @@
     "template-no-negated-async": true,
     "use-lifecycle-interface": true,
     "use-pipe-transform-interface": true,
-    "object-literal-sort-keys": false
+    "object-literal-sort-keys": false,
+    "no-namespace": false,
+    "class-name": false,
+    "no-shadowed-variable": false,
+    "no-string-literal": false,
+    "prefer-for-of": false
   },
   "rulesDirectory": [
     "codelyzer"

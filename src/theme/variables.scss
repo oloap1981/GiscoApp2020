@@ -1,6 +1,32 @@
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/theming/
 
+
+$primary:   #126462;
+$secondary: #68AA81;
+$tertiary:  #FBBB00;
+$primary-darker: darken($primary, 5);
+$primary-lighter: lighten($primary, 5);
+
+
+$colors: (
+  /*primary:    #488aff,*/
+  primary:   $primary,
+  secondary:  $secondary,
+  tertiary:  $tertiary,
+  primary-darker: $primary-darker,
+  primary-lighter: $primary-lighter,
+  danger:     #f53d3d,
+  alert:      #f4c800,
+  future:     #4096ff,
+  no-date:    #ff710d,
+  vincolate:  #526069,
+  done:       #6dbe20,
+  light:      #f4f4f4,
+  white:      #ffffff,
+  dark:       #222
+);
+
 /** Ionic CSS Variables **/
 :root {
   /** primary **/

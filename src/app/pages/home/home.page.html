@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar>
+    <!-- <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button> -->
+    <ion-buttons  slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Home</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card *ngIf="listaAttivita.length > 0">
+    <ion-card-header>
+      <ion-card-title padding>
+        Elenco delle mie attività
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content no-padding>
+      <ion-list no-padding>
+        <ion-item *ngFor="let attivita of listaAttivita" (click)="goToDetails(attivita)" text-wrap no-padding>
+          <button no-lines ion-item no-margin clear>
+            <h2><img [src]="getDotPath(attivita)" class="home-dot"> {{attivita.att_protocollo}} -
+              {{attivita.att_titolo}}</h2>
+            <p>{{attivita.az_codice_interno + ' - ' + attivita.az_ragione_sociale}}</p>
+            <p>{{attivita.tab_tipo_attivita_desc + ' - ' + attivita.tab_tipo_scadenza_desc}}</p>
+          </button>
+        </ion-item>
+      </ion-list>
+      <!--<ion-list>
+				<ion-item *ngFor="let attivita of listaAttivita" >
+					<ion-label>Sito {{attivita.az_codice_interno}} {{attivita.az_ragione_sociale}}</ion-label>
+					<ion-label>{{attivita.att_titolo}}</ion-label>
+					<ion-label>Data scadenza {{attivita.att_data_scadenza}}</ion-label>
+					<ion-label> {{attivita.att_protocollo}}</ion-label>
+				</ion-item>
+			</ion-list>-->
+    </ion-card-content>
+  </ion-card>
+  <ion-card *ngIf="prescrizioniChartVisible">
+    <ion-card-header>
+      <ion-card-title padding>
+        Situazione prescrizioni
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="yellow-header" *ngIf="prescrizioniChartVisible">
+      <canvas #doughnutCanvas></canvas>
+    </ion-card-content>
+  </ion-card>
+  <ion-card *ngIf="attivitaChartVisible">
+    <ion-card-header>
+      <ion-card-title padding>
+        Situazione attivita
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="yellow-header" *ngIf="attivitaChartVisible">
+      <canvas #stackedCanvas></canvas>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row text-center>
+        <ion-col (click)="goToNuovaOsservazione()">
+          <ion-icon name="add-circle" style="font-size: 2em;"></ion-icon><br>Nuova osservazione
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>
