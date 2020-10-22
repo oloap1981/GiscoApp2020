@@ -71,6 +71,8 @@ export class AppComponent extends BaseComponent {
 
     this.pages = [
       { title: 'Home', name: 'home', icon: 'home' },
+      { title: 'Osservazioni', name: 'elenco-osservazioni', icon: 'list' },
+      { title: 'Documenti', name: 'cartelle', icon: 'list' },
     ];
 
     this.storeService.initializeServerUrl();

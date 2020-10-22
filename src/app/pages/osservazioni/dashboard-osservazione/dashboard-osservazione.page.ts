@@ -15,7 +15,7 @@ import { Geolocation, GeolocationOptions, Geoposition, PositionError } from '@io
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { Messaggio } from '../../../models/messaggio/messaggio.namespace';
 import { BaseComponent } from 'src/app/components/base/base.component';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -36,7 +36,7 @@ export class DashboardOsservazionePage extends BaseComponent{
   public sitoSelezionato: Sito.Sito;
   public dispositivoSelezionato: Dispositivo.Dispositivo;
   private ws_Oss: Osservazione.ws_Osservazione;
-  private selectedOsservazione: Osservazione.Osservazione;
+  public selectedOsservazione: Osservazione.Osservazione;
   public titolo: string;
   public descrizione: string;
   public protocollo: string;
@@ -77,17 +77,32 @@ export class DashboardOsservazionePage extends BaseComponent{
               private alertCtrl: AlertController,
               private camera: Camera,
               private geolocation: Geolocation,
+              private route: ActivatedRoute,
               public router: Router,
               public ngZone: NgZone) {
 
     super(router, ngZone);
 
-    this.selectedOsservazione = this.navParams.get('selectedOsservazione');
-    if (this.selectedOsservazione === undefined) {
-      this.isInserimento = true;
-    } else {
-      this.isInserimento = false;
-    }
+    this.route.queryParams.subscribe(params => {
+      const selectedOsservazioneString = params['selectedOsservazione'];
+      if (selectedOsservazioneString && selectedOsservazioneString !== ''){
+        this.selectedOsservazione = JSON.parse(selectedOsservazioneString) as Osservazione.Osservazione;
+        this.isInserimento = false;
+      } else {
+        this.isInserimento = true;
+      }
+      const callbackReloadString = params['callbackReload'];
+      if (callbackReloadString && callbackReloadString !== '') {
+        this.callbackReload = JSON.parse(callbackReloadString) as Osservazione.Osservazione;
+      }
+    });
+
+    // this.selectedOsservazione = this.navParams.get('selectedOsservazione');
+    // if (this.selectedOsservazione === undefined) {
+    //   this.isInserimento = true;
+    // } else {
+    //   this.isInserimento = false;
+    // }
     this.callbackReload = this.navParams.get('callbackReload');
 
     this.ws_Oss = new Osservazione.ws_Osservazione();

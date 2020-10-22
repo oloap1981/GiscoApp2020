@@ -24,6 +24,27 @@ const routes: Routes = [
     path: 'loading',
     loadChildren: () => import('./pages/loading/loading.module').then( m => m.LoadingPageModule)
   },
+  {
+    path: 'elenco-osservazioni',
+    loadChildren: () => import('./pages/osservazioni/elenco-osservazioni/elenco-osservazioni.module')
+    .then( m => m.ElencoOsservazioniPageModule)
+  },
+  {
+    path: 'cartelle',
+    loadChildren: () => import('./pages/documenti/cartelle/cartelle.module').then( m => m.CartellePageModule)
+  },
+  {
+    path: 'elenco-tipologie',
+    loadChildren: () => import('./pages/documenti/elenco-tipologie/elenco-tipologie.module').then( m => m.ElencoTipologiePageModule)
+  },
+  {
+    path: 'elenco-documenti',
+    loadChildren: () => import('./pages/documenti/elenco-documenti/elenco-documenti.module').then( m => m.ElencoDocumentiPageModule)
+  },
+  {
+    path: 'dashboard-documento',
+    loadChildren: () => import('./pages/documenti/dashboard-documento/dashboard-documento.module').then( m => m.DashboardDocumentoPageModule)
+  },
 ];
 
 // this.pages = [

@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Documenti/Cartelle</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-4 class="icon-folder" *ngFor="let cartella of listaCartelle"
+        (click)="goToTipologieDocumenti($event, cartella)">
+        <ion-label>{{cartella.tab_cartelle_documenti_desc}}</ion-label>
+        <ion-badge>{{cartella.sistemi}}</ion-badge>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

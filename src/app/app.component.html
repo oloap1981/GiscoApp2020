@@ -1,27 +1,27 @@
 <ion-menu contentId="content">
 
-  <ion-header>
-    <ion-toolbar primary-darker>
+  <ion-header >
+    <ion-toolbar >
       <img src="assets/imgs/logo-gisco.png" style="padding:20px 120px 0 0">
     </ion-toolbar>
   </ion-header>
 
   <ion-content >
-    <ion-list *ngIf="viewMenu">
-      <button ion-item *ngFor="let p of pages" (click)="openPage(p)">
+    <ion-list *ngIf="viewMenu" >
+      <ion-item ion-item *ngFor="let p of pages" (click)="openPage(p)">
         <ion-icon name="{{p.icon}}" item-left></ion-icon>
         {{p.title}} <ion-badge color="secondary">{{getNumeroNotifiche(p.title)}}</ion-badge>
-      </button>
+      </ion-item>
     </ion-list>
-    <ion-list>
-      <button ion-item (click)="goToSettings()">
+    <ion-list >
+      <ion-item ion-item (click)="goToSettings()" >
         <ion-icon name="settings" item-left></ion-icon>
         Settings
-      </button>
-      <button ion-item (click)="logOut()">
+      </ion-item>
+      <ion-item ion-item (click)="logOut()" >
         <ion-icon name="log-out" item-left></ion-icon>
         Logout
-      </button>
+      </ion-item>
     </ion-list>
   </ion-content>
 
@@ -29,7 +29,7 @@
 
 <!-- <ion-menu type="overlay" menuId="first" contentId="main">
   <ion-header>
-    <ion-toolbar color="primary">
+    <ion-toolbar >
       <ion-title>Start Menu</ion-title>
     </ion-toolbar>
   </ion-header>
