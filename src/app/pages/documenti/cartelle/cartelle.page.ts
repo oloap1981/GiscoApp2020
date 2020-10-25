@@ -17,6 +17,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'page-cartelle',
   templateUrl: 'cartelle.page.html',
+  styleUrls: ['cartelle.page.scss']
 })
 export class CartellePage extends BaseComponent {
   public listaCartelle: Array<Documento.Cartella>;

@@ -19,7 +19,8 @@ import { Router } from '@angular/router';
  */
 @Component({
   selector: 'login',
-  templateUrl: 'login.page.html'
+  templateUrl: 'login.page.html',
+  styleUrls: ['login.page.scss']
 })
 export class LoginPage extends BaseComponent {
 

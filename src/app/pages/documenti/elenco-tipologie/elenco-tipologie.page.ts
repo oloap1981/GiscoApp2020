@@ -17,6 +17,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'page-tipologie',
   templateUrl: 'elenco-tipologie.page.html',
+  styleUrls: ['elenco-tipologie.page.scss']
 })
 
 export class ElencoTipologiePage extends BaseComponent {
