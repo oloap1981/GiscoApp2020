@@ -4,6 +4,11 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>Osservazioni</ion-title>
+    <ion-buttons end>
+      <div class="icon-section">
+        <i [ngClass]="icon" [ngStyle]="{'color' : color }"></i>
+      </div>
+    </ion-buttons>
   </ion-toolbar>
   <ion-searchbar placeholder="Ricerca sito..." (ionBlur)="setSitoFiltro($event)"></ion-searchbar>
   <ion-searchbar placeholder="Ricerca..." (ionBlur)="setProtocolloFiltro($event)"></ion-searchbar>

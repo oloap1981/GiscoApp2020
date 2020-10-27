@@ -26,3 +26,17 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 
+ion-header {
+    background-color: --ion-color-primary;
+}
+ion-footer {
+    background-color: --ion-color-primary;
+//   color: white;
+}
+
+ion-toolbar {
+    background-color: --ion-color-primary;
+//   * {
+//         color: #fff !important;
+//     }
+}

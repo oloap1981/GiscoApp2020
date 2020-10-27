@@ -20,6 +20,7 @@ import { DashboardOsservazionePage } from '../dashboard-osservazione/dashboard-o
 @Component({
   selector: 'page-osservazioni',
   templateUrl: 'elenco-osservazioni.page.html',
+  styleUrls: ['elenco-osservazioni.page.scss', '../../../app.component.scss']
 })
 
 export class ElencoOsservazioniPage extends BaseComponent{
@@ -32,6 +33,9 @@ export class ElencoOsservazioniPage extends BaseComponent{
   public listaTipologie: Array<Filtro.TipologiaOsservazione>;
 
   public statoSelezionato: string;
+
+  color: string;
+  icon: string;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
