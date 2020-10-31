@@ -17,7 +17,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'page-documenti',
   templateUrl: 'elenco-documenti.page.html',
-  styleUrls: ['elenco-documenti.page.scss']
+  styleUrls: ['elenco-documenti.page.scss', '../../../app.component.scss']
 })
 
 export class ElencoDocumentiPage extends BaseComponent{

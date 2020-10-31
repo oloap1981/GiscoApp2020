@@ -1,9 +1,9 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Osservazioni</ion-title>
+    <ion-title class="ion-text-center">Osservazioni</ion-title>
     <ion-buttons end>
       <div class="icon-section">
         <i [ngClass]="icon" [ngStyle]="{'color' : color }"></i>
@@ -12,7 +12,7 @@
   </ion-toolbar>
   <ion-searchbar placeholder="Ricerca sito..." (ionBlur)="setSitoFiltro($event)"></ion-searchbar>
   <ion-searchbar placeholder="Ricerca..." (ionBlur)="setProtocolloFiltro($event)"></ion-searchbar>
-  <ion-item class="ion-filters">
+  <ion-item class="ion-filters" color="primary">
     <ion-label>Tipologia</ion-label>
     <ion-select [(ngModel)]="tipologiaSelezionata" (ionChange)="setTipologiaFiltro()">
       <ion-select-option *ngFor="let tipologia of listaTipologie" [value]="tipologia">
@@ -20,7 +20,7 @@
       </ion-select-option>
     </ion-select>
   </ion-item>
-  <ion-item class="ion-filters">
+  <ion-item class="ion-filters" color="primary">
     <ion-label>Stato</ion-label>
     <ion-select [(ngModel)]="statoSelezionato" (ionChange)="setStatoFiltro()">
       <ion-select-option [value]="'N'" selected>Aperte</ion-select-option>
@@ -29,15 +29,16 @@
     </ion-select>
   </ion-item>
 </ion-header>
+
 <ion-content>
   <ion-list>
     <ion-item *ngFor="let osservazione of listaOsservazioni" (click)="goToDetails(osservazione)" text-wrap no-padding>
-      <button no-lines ion-item no-margin clear>
-        <h2><img [src]="getDotPath(osservazione)" class="list-dot">{{(osservazione.att_protocollo)}} -
-          {{osservazione.att_titolo}}</h2>
+      <a >
+        <h4><img [src]="getDotPath(osservazione)" class="list-dot">{{(osservazione.att_protocollo)}} -
+          {{osservazione.att_titolo}}</h4>
         <p>{{osservazione.tab_tipo_scadenza_desc}}</p>
         <p class="indirizzo_sito">{{osservazione.az_codice_interno}} {{osservazione.az_ragione_sociale}}</p>
-      </button>
+      </a>
     </ion-item>
   </ion-list>
   <!--<ion-list *ngFor="let osservazione of listaOsservazioni" (click)="goToDetails(osservazione)">
@@ -57,9 +58,9 @@
   </ion-infinite-scroll>
 </ion-content>
 <ion-footer>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-grid>
-      <ion-row text-center>
+      <ion-row class="ion-text-center">
         <ion-col (click)="goToNuovaOsservazione()">
           <ion-icon name="add-circle" style="font-size: 2em;"></ion-icon><br>Nuova osservazione
         </ion-col>

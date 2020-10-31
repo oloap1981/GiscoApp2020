@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Osservazione</ion-title>
+    <ion-title class="ion-text-center">Osservazione</ion-title>
     <ion-buttons end>
       <div class="icon-section">
         <i [ngClass]="icon" [ngStyle]="{'color' : color }"></i>
@@ -179,12 +179,12 @@
     </div>
   </ion-list>
 </ion-content>
-<ion-footer [ngSwitch]="whichPage">
-  <ion-toolbar *ngSwitchCase="'Osservazione'">
+<ion-footer [ngSwitch]="whichPage" class="ion-text-center">
+  <ion-toolbar *ngSwitchCase="'Osservazione'" color="primary">
     <ion-grid>
       <ion-row text-center>
         <ion-col *ngIf="!conclusa" (click)="salvaOsservazione()">
-          <ion-icon name="done-all" style="font-size: 2em;"></ion-icon><br>
+          <ion-icon name="checkmark-circle" style="font-size: 2em;"></ion-icon><br>
           Salva
         </ion-col>
         <ion-col *ngIf="selectedOsservazione" (click)="chiudiOsservazione()">

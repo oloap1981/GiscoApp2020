@@ -1,16 +1,21 @@
 <ion-header>
-  <ion-toolbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Documenti/Cartelle</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Documenti/Cartelle</ion-title>
   </ion-toolbar>
+  <ion-buttons end>
+    <div class="icon-section">
+      <!--<i [ngClass]="{'icon': true}" [ngStyle]="{'color' : color }"></i>-->
+    </div>
+  </ion-buttons>
 </ion-header>
 
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col col-4 class="icon-folder" *ngFor="let cartella of listaCartelle"
+      <ion-col size-xs="4" size-sm="3" size-lg="2" class="icon-folder" *ngFor="let cartella of listaCartelle"
         (click)="goToTipologieDocumenti($event, cartella)">
         <ion-label>{{cartella.tab_cartelle_documenti_desc}}</ion-label>
         <ion-badge>{{cartella.sistemi}}</ion-badge>
