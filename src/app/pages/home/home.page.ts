@@ -28,6 +28,8 @@ export class HomePage extends BaseComponent {
   doughnutChart: any;
   stackedBar: any;
 
+  private serverUrl = '';
+
   public prescrizioniChartData: Common.PrescrizioniChartData;
   public attivitaChartData: Array<Common.AttivitaChartData>;
   public listaAttivita: Array<Attivita.Attivita>;
@@ -52,16 +54,18 @@ export class HomePage extends BaseComponent {
   }
 
   public ionViewDidEnter(): void {
-
-    this.storeService.getUserDataPromise(this.storeService.getLocalServerUrl()).then((val: Login.ws_Token) => {
-      this.getAttivita(val.token_value);
-      this.createPrescrizioniChart(val.token_value);
-      this.createAttivitaChart(val.token_value);
+    this.storeService.getServerUrl().then((url: string) => {
+      this.serverUrl = url;
+      this.storeService.getUserDataPromise(url).then((val: Login.ws_Token) => {
+        this.getAttivita(val.token_value);
+        this.createPrescrizioniChart(val.token_value);
+        this.createAttivitaChart(val.token_value);
+      });
     });
   }
 
   public createAttivitaChart(tokenValue: string) {
-    this.commonService.getAttivitaChartData(tokenValue, this.storeService.getLocalServerUrl()).subscribe(data => {
+    this.commonService.getAttivitaChartData(tokenValue, this.serverUrl).subscribe(data => {
       if (data.ErrorMessage.msg_code === 0) {
 
         this.attivitaChartVisible = data['visible'] === 'S';
@@ -129,7 +133,7 @@ export class HomePage extends BaseComponent {
   }
 
   public createPrescrizioniChart(tokenValue: string) {
-    this.commonService.getPrescrizioniChartData(tokenValue, this.storeService.getLocalServerUrl()).subscribe(data => {
+    this.commonService.getPrescrizioniChartData(tokenValue, this.serverUrl).subscribe(data => {
 
       if (data.ErrorMessage.msg_code === 0) {
         const labels = new Array<string>();
@@ -194,7 +198,7 @@ export class HomePage extends BaseComponent {
       (await loading).present();
     }
     // (token: string, categoria: any, tipo_cod: any, sito_cod: string, from: number, to: number)
-    this.attivitaService.getMieAttivita(this.storeService.getLocalServerUrl(), tokenValue).subscribe(async r => {
+    this.attivitaService.getMieAttivita(this.serverUrl, tokenValue).subscribe(async r => {
       console.log('getAttivita');
       if (r.ErrorMessage.msg_code === 0) {
         console.log(r.ErrorMessage.msg_code);
