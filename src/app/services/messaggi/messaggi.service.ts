@@ -114,6 +114,12 @@ export class MessaggiService {
             + GlobalVariable.URL_SEPARATOR, token);
     }
 
+    public recDeleteMessage(serverUrl: string, key: number, token: string) {
+        return this.httpService.get(serverUrl + GlobalVariable.BASE_API_URL + GlobalVariable.MESSAGGI_REC_DELETED_KEYWORD
+            + GlobalVariable.URL_SEPARATOR + GlobalVariable.URL_TOKEN_PLACEHOLDER
+            + GlobalVariable.URL_SEPARATOR + key
+            + GlobalVariable.URL_SEPARATOR, token);
+    }
 
     public deleteMessage(serverUrl: string, mess) {
         return this.httpService.post(serverUrl + GlobalVariable.BASE_API_URL + GlobalVariable.MESSAGGI_DELET_KEYWORD

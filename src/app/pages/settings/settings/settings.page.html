@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Settings</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <form (ngSubmit)="saveSettings()" #registerForm="ngForm">
+        <ion-list>
+            <ion-item color="primary-lighter" class="ion-section-title">
+                <ion-label >Url server</ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-input placeholder="servername" name="servername" [(ngModel)]="servername"></ion-input>
+            </ion-item>
+        </ion-list>
+  </form>
+</ion-content>
+<ion-footer class="ion-text-center">
+  <ion-toolbar color="primary">
+        <ion-grid>
+            <ion-row text-center>
+                <ion-col (click)="saveSettings()">
+                    <ion-icon name="archive" style="font-size: 2em;"></ion-icon><br>
+                    Salva
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-toolbar>
+</ion-footer>

@@ -7,6 +7,7 @@ import { Http } from '../../models/shared/http.namespace';
 
 import { GeolocatedService } from '../shared/geolocated.service';
 import { Geoposition } from '@ionic-native/geolocation/ngx';
+import { PositionError } from '@ionic-native/geolocation';
 
 
 @Injectable()
@@ -48,11 +49,11 @@ export class DispositiviService {
         token: string,
         tipologia_cod: any,
         provincia_cod: string,
-        campoLibero): Observable<Http.HttpResponse> {
+        campoLibero, from:any, to:any): Observable<Http.HttpResponse> {
         return this.httpService.get(serverUrl + GlobalVariable.BASE_API_URL + GlobalVariable.DISPOSITIVI_GET_ELENCO_KEYWORD
             + GlobalVariable.URL_SEPARATOR + GlobalVariable.URL_TOKEN_PLACEHOLDER
-            + GlobalVariable.URL_SEPARATOR + '0' // from
-            + GlobalVariable.URL_SEPARATOR + '0' // to
+            + GlobalVariable.URL_SEPARATOR + from
+            + GlobalVariable.URL_SEPARATOR + to
             + GlobalVariable.URL_SEPARATOR + tipologia_cod // tipologia
             + GlobalVariable.URL_SEPARATOR + provincia_cod // provincia
             + GlobalVariable.URL_SEPARATOR + campoLibero

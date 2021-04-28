@@ -6,7 +6,7 @@ import { GlobalVariable } from '../../global';
 import { Http } from '../../models/shared/http.namespace';
 
 import { GeolocatedService } from '../shared/geolocated.service';
-import { Geoposition } from '@ionic-native/geolocation/ngx';
+import { Geoposition, PositionError } from '@ionic-native/geolocation/ngx';
 
 @Injectable()
 export class SitiService {
@@ -45,14 +45,14 @@ export class SitiService {
     }
 
     public getListaSiti(
-        serverUrl: string, token: string, tipologia_key: any, provincia_cod: string, campoLibero): Observable<Http.HttpResponse> {
+        serverUrl: string, token: string, tipologia_key: any, provincia_cod: string, campoLibero:string, from:any, to:any): Observable<Http.HttpResponse> {
 
         return this.httpService.get(serverUrl + GlobalVariable.BASE_API_URL + GlobalVariable.SITI_GET_ELENCO_KEYWORD
             + GlobalVariable.URL_SEPARATOR + GlobalVariable.URL_TOKEN_PLACEHOLDER
-            + GlobalVariable.URL_SEPARATOR + '0' // from
-            + GlobalVariable.URL_SEPARATOR + '0' // to
-            + GlobalVariable.URL_SEPARATOR + tipologia_key // tipologia
-            + GlobalVariable.URL_SEPARATOR + provincia_cod // provincia
+            + GlobalVariable.URL_SEPARATOR + from
+            + GlobalVariable.URL_SEPARATOR + to
+            + GlobalVariable.URL_SEPARATOR + tipologia_key
+            + GlobalVariable.URL_SEPARATOR + provincia_cod
             + GlobalVariable.URL_SEPARATOR + campoLibero
             + GlobalVariable.URL_SEPARATOR + this.currentLat
             + GlobalVariable.URL_SEPARATOR + this.currentLon

@@ -29,13 +29,17 @@
 
 /** Ionic CSS Variables **/
 :root {
+  --ion-color-menu: #126462;
+  --ion-border-color: #167a77;
+
   /** primary **/
-  --ion-color-primary: #126462;
+  --ion-color-primary: #167a77;
   --ion-color-primary-rgb: 18,100,98;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255,255,255;
   --ion-color-primary-shade: #105856;
   --ion-color-primary-tint: #2a7472;
+
 
   /** secondary **/
   --ion-color-secondary: #68AA81;
@@ -44,6 +48,58 @@
   --ion-color-secondary-contrast-rgb: 0,0,0;
   --ion-color-secondary-shade: #5c9672;
   --ion-color-secondary-tint: #77b38e;
+
+
+  --ion-color-white: #ffffff;
+  --ion-color-white-rgb: 255,255,255;
+  --ion-color-white-contrast: #000000;
+  --ion-color-white-contrast-rgb: 0,0,0;
+  --ion-color-white-shade: #e0e0e0;
+  --ion-color-white-tint: #ffffff;
+  
+  --ion-color-done: #6dbe20;
+  --ion-color-done-rgb: 109,190,32;
+  --ion-color-done-contrast: #000000;
+  --ion-color-done-contrast-rgb: 0,0,0;
+  --ion-color-done-shade: #60a71c;
+  --ion-color-done-tint: #7cc536;
+  
+  --ion-color-vincolate: #526069;
+  --ion-color-vincolate-rgb: 82,96,105;
+  --ion-color-vincolate-contrast: #ffffff;
+  --ion-color-vincolate-contrast-rgb: 255,255,255;
+  --ion-color-vincolate-shade: #48545c;
+  --ion-color-vincolate-tint: #637078;
+
+  --ion-color-no-date: #ff710d;
+  --ion-color-no-date-rgb: 255,113,13;
+  --ion-color-no-date-contrast: #000000;
+  --ion-color-no-date-contrast-rgb: 0,0,0;
+  --ion-color-no-date-shade: #e0630b;
+  --ion-color-no-date-tint: #ff7f25;
+
+  --ion-color-alert: #f4c800;
+  --ion-color-alert-rgb: 244,200,0;
+  --ion-color-alert-contrast: #000000;
+  --ion-color-alert-contrast-rgb: 0,0,0;
+  --ion-color-alert-shade: #d7b000;
+  --ion-color-alert-tint: #f5ce1a;
+
+  --ion-color-favorite: #69bb7b;
+  --ion-color-favorite-rgb: 105,187,123;
+  --ion-color-favorite-contrast: #ffffff;
+  --ion-color-favorite-contrast-rgb: 255,255,255;
+  --ion-color-favorite-shade: #5ca56c;
+  --ion-color-favorite-tint: #78c288;
+
+  /** future **/
+  --ion-color-future: #4096ff;
+  --ion-color-future-rgb: 64,150,255;
+  --ion-color-future-contrast: #000000;
+  --ion-color-future-contrast-rgb: 0,0,0;
+  --ion-color-future-shade: #3884e0;
+  --ion-color-future-tint: #53a1ff;
+
 
   /** tertiary **/
   --ion-color-tertiary: #FBBB00;

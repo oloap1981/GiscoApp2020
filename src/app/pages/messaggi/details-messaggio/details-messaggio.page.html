@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+      <ion-title class="ion-text-center">Messaggio</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+      <ion-card-header padding text-wrap>
+          {{mess.soggetto}}
+      </ion-card-header>
+      <ion-card-content padding>
+          <p>Mittente: {{mess.nome_mit}} {{mess.cognome_mit}}</p>
+          <hr>
+          <p>Destinatario: {{mess.nome_des}} {{mess.cognome_des}}</p>
+          <hr>
+          <h2 [innerHTML]="mess.messaggio"></h2>
+      </ion-card-content>
+  </ion-card>
+</ion-content>
+<ion-footer class="ion-text-center" *ngIf="!messagioCestino">
+  <ion-toolbar color="primary">
+    <ion-grid>
+        <ion-row text-center>
+            <ion-col>
+                <ion-icon name="arrow-undo" (click)="reply(mess)" style="font-size: 2em;"></ion-icon><br>
+                Rispondi
+            </ion-col>
+            <ion-col>
+                <ion-icon name="arrow-redo" (click)="inoltro(mess)" style="font-size: 2em;"></ion-icon><br>
+                Inoltra
+            </ion-col>
+            <ion-col>
+                <ion-icon name="trash" (click)="deleteConfirm(mess)" style="font-size: 2em;"></ion-icon><br>
+                Elimina
+            </ion-col>
+            <ion-col *ngIf="!onlyNotImportant">
+                <ion-icon name="star-outline" *ngIf="mess.preferito==''" (click)="setStar(mess,'S')"
+                    style="font-size: 2em;"></ion-icon>
+                <ion-icon name="star-outline" *ngIf="mess.preferito=='N'" (click)="setStar(mess,'S')"
+                    style="font-size: 2em;"></ion-icon>
+                <ion-icon name="star" *ngIf="mess.preferito=='S'" (click)="setStar(mess,'N')" style="font-size: 2em;">
+                </ion-icon>
+                <br>Preferito
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-toolbar>
+</ion-footer>

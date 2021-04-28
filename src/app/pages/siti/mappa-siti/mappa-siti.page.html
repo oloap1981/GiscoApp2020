@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Mappa Siti</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+    <ion-searchbar placeholder="Ricerca..." (ionInput)="getSiti($event)" color="primary"></ion-searchbar>
+    <ion-item color="primary" style="--border-style: none;">
+        <ion-label>Tipologia</ion-label>
+        <ion-select [(ngModel)]="tipologiaSelezionata" (ionChange)="getSiti()">
+            <ion-select-option *ngFor="let tipologia of listaTipologie" [value]="tipologia">{{tipologia.tab_tipologia_sito_desc}}</ion-select-option>
+          </ion-select>
+    </ion-item>
+
+    <!--ion-item style="--border-style: none;" color="primary">
+        <ion-label>Provincia</ion-label>
+        <ion-select [(ngModel)]="provinciaSelezionata" (ionChange)="getSiti()">
+            <ion-select-option *ngFor="let provincia of listaProvince" [value]="provincia">{{provincia.Descrizione}}</ion-select-option>
+          </ion-select>
+    </ion-item-->
+
+    <ion-list style="height: 100%;">
+      <div class="">
+        <map-component [mapModel]="mapModel" *ngIf="showMap" (MarkerClicked)="goToDetailsSito($event)"></map-component>
+      </div>
+    </ion-list>
+
+</ion-content>

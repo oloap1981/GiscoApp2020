@@ -1,5 +1,7 @@
 {
-  "name": "GiscoApp2020",
-  "integrations": {},
+  "name": "Gisco",
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }

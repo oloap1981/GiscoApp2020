@@ -1,4 +1,3 @@
-import { DashboardOsservazionePageModule } from './pages/osservazioni/dashboard-osservazione/dashboard-osservazione.module';
 import { HomePageModule } from './pages/home/home.module';
 import { AttivitaService } from './services/attivita/attivita.service';
 import { ComunicazioniService } from './services/comunicazioni/comunicazioni.service';
@@ -32,6 +31,9 @@ import { StoreService } from './services/store/store.service';
 import { PrescrizioniService } from './services/prescrizioni/prescrizioni.service';
 import { HttpClientModule } from '@angular/common/http';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { DashboardChiusuraPageModule } from './pages/osservazioni/dashboard-chiusura/dashboard-chiusura.module';
+import { DashboardOsservazionePageModule } from './pages/osservazioni/dashboard-osservazione/dashboard-osservazione.module';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [AppComponent],
@@ -43,7 +45,12 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
     AppRoutingModule,
     HttpClientModule,
     HomePageModule,
-    DashboardOsservazionePageModule
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyC0ZS8b6gni8cmzaP6wANluaN7XWCvNtBc', 
+      libraries: ['places']
+    }),
+    DashboardOsservazionePageModule,
+    DashboardChiusuraPageModule
   ],
   providers: [
     StatusBar,

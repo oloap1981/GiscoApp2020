@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Profilo</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="userData" text-center>
+      <div class="user-bigger mx-auto  mb-3 addBook ">
+          <img (click)="presentActionSheet()" src={{profilo.url_avatar}}>
+      </div>
+      <h5 class="name">{{profilo.nome}} {{profilo.cognome}}</h5>
+      <p class="role">{{profilo.ruolo_aziendale}}</p>
+      <table class="roleInfo mx-auto">
+          <tr>
+              <td class="text-left">
+                  N° interno
+              </td>
+              <td class="text-right">
+                  {{profilo.matricola}}
+              </td>
+          </tr>
+          <tr>
+              <td class="text-left">
+                  Ruolo aziendale
+              </td>
+              <td class="text-right">
+                  {{profilo.ruolo_aziendale}}
+              </td>
+          </tr>
+          <tr>
+              <td class="text-left">
+                  Mansione
+              </td>
+              <td class="text-right">
+                  {{profilo.ruolo_aziendale}}
+              </td>
+          </tr>
+      </table>
+      <table class="contacts mt-3 mb-5 mx-auto">
+          <tr>
+              <td class="text-left">
+                  <ion-icon name="call"></ion-icon>
+              </td>
+              <td class="text-right">
+                  <span>{{profilo.telefono}}</span>
+              </td>
+          </tr>
+          <tr>
+              <td class="text-left">
+                  <ion-icon name="mail"></ion-icon>
+
+              </td>
+              <td class="text-right">
+                <span>{{profilo.email}}</span>
+              </td>
+          </tr>
+      </table>
+  </div>
+</ion-content>
+<ion-footer class="ion-text-center">
+  <ion-toolbar color="primary">
+      <ion-grid>
+          <ion-row text-center>
+              <ion-col (click)="changePassword()">
+                  <ion-icon name="build" style="font-size: 2em;"></ion-icon><br>Cambia password
+              </ion-col>
+          </ion-row>
+      </ion-grid>
+  </ion-toolbar>
+</ion-footer>

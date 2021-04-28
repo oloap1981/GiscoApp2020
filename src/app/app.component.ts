@@ -71,10 +71,18 @@ export class AppComponent extends BaseComponent {
 
     this.pages = [
       { title: 'Home', name: 'home', icon: 'home' },
-      { title: 'Osservazioni', name: 'elenco-osservazioni', icon: 'list' },
-      { title: 'Documenti', name: 'cartelle', icon: 'list' },
+      { title: 'Siti', name: 'elenco-siti', icon: 'locate' },
+      { title: 'Mappa siti', name: 'mappa-siti', icon: 'map' },
+      { title: 'Dispositivi', name: 'elenco-dispositivi', icon: 'extension-puzzle' },
+      { title: 'Mappa dispositivi', name: 'mappa-dispositivi', icon: 'map' },
+      { title: 'Documenti', name: 'cartelle', icon: 'document' },
+      { title: 'Messaggi', name: 'elenco-messaggi', icon: 'mail' },
+      { title: 'Procedimenti', name: 'elenco-procedimenti', icon: 'mail' },
+      { title: 'Osservazioni', name: 'elenco-osservazioni', icon: 'briefcase' },
+      { title: 'Attivita', name: 'elenco-attivita', icon: 'hammer' },
+      { title: 'Profilo', name: 'dashboard-profilo', icon: 'person-circle' },
     ];
-
+    
     this.storeService.initializeServerUrl();
 
     let piattaforma = '';
@@ -179,7 +187,7 @@ export class AppComponent extends BaseComponent {
 
   public goToSettings() {
     this.menu.close();
-    this.goToPage('login');
+    this.goToPage('settings');
   }
 
   public getNumeroNotifiche(titolo: string): string {

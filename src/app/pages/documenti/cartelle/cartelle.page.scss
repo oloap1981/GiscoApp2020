@@ -4,7 +4,7 @@
     background-position: center center;
     background-size: contain;
     height: 80px;
-    margin-bottom: 60px;
+    margin-bottom: 20px;
     margin-top: 10px;
     padding: 0;
     ion-label {
@@ -13,6 +13,7 @@
         text-align: center;
         width: 100%;
         height: 45px;
+        font-size: 12px;
     }
     ion-badge {
         position: absolute;
@@ -43,4 +44,8 @@
         top: 0px;
         text-align: center
     }
+}
+
+ion-col{
+
 }

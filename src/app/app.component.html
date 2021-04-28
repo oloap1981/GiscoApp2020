@@ -2,23 +2,23 @@
 
   <ion-header >
     <ion-toolbar >
-      <img src="assets/imgs/logo-gisco.png" style="padding:20px 120px 0 0">
+      <img src="assets/imgs/logo-gisco.png" style="padding:10px 120px 10px 0">
     </ion-toolbar>
   </ion-header>
 
   <ion-content >
     <ion-list *ngIf="viewMenu" >
-      <ion-item ion-item *ngFor="let p of pages" (click)="openPage(p)">
+      <ion-item ion-item *ngFor="let p of pages" (click)="openPage(p)" lines="none">
         <ion-icon name="{{p.icon}}" item-left></ion-icon>
         {{p.title}} <ion-badge color="secondary">{{getNumeroNotifiche(p.title)}}</ion-badge>
       </ion-item>
     </ion-list>
-    <ion-list >
-      <ion-item ion-item (click)="goToSettings()" >
+    <ion-list class="mt-3" >
+      <ion-item ion-item (click)="goToSettings()" lines="none">
         <ion-icon name="settings" item-left></ion-icon>
         Settings
       </ion-item>
-      <ion-item ion-item (click)="logOut()" >
+      <ion-item ion-item (click)="logOut()" lines="none">
         <ion-icon name="log-out" item-left></ion-icon>
         Logout
       </ion-item>

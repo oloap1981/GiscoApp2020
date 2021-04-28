@@ -29,6 +29,8 @@ export const GlobalVariable = Object.freeze({
     MESSAGGI_SET_UNREAD_KEYWORD: 'set_unread_message', // Mette a non letto il messaggio
     MESSAGGI_SET_STAR_KEYWORD: 'set_star_message', // Mette o toglie dai preferito
     MESSAGGI_SET_DELETED_KEYWORD: 'set_deleted_message', // Mette nel cestino
+    MESSAGGI_REC_DELETED_KEYWORD: 'rec_deleted_message', // Recupera dal cestino
+    //
     MESSAGGI_DELET_KEYWORD: 'del_message', // Cancella dal cestino
     MESSAGGI_SALVA_KEYWORD: 'put_message', // Salva un nuovo messagio
     MESSAGGI_GET_ELENCO_DIPENDENTI_KEYWORD: 'get_elenco_dipendenti', // get lista contatti

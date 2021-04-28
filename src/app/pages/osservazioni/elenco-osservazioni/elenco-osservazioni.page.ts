@@ -7,15 +7,7 @@ import { Filtro } from '../../../models/filtro/filtro.namespace';
 import { Osservazione } from '../../../models/osservazione/osservazione.namespace';
 import { OsservazioniService } from '../../../services/osservazioni/osservazioni.service';
 import { Router } from '@angular/router';
-import { LoginPage } from '../../login/login.page';
-import { DashboardOsservazionePage } from '../dashboard-osservazione/dashboard-osservazione.page';
 
-/**
- * Generated class for the CartellePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @Component({
   selector: 'page-osservazioni',
@@ -104,7 +96,7 @@ export class ElencoOsservazioniPage extends BaseComponent{
               this.listaOsservazioni.length = 0;
               this.listaOsservazioni = r.l_lista_osservazioni;
             } else {
-              infiniteScroll.complete();
+              infiniteScroll.target.complete();
               this.listaOsservazioni.push(...r.l_lista_osservazioni);
             }
             console.log('getOsservazioni num ricevuti', r.l_lista_osservazioni.length);
@@ -136,7 +128,7 @@ export class ElencoOsservazioniPage extends BaseComponent{
 
   public setSitoFiltro(event) {
     if (event !== undefined) {
-      this.campoLiberoSito = event.value;
+      this.campoLiberoSito = event.target.value;
     }
     if (this.campoLiberoSito === '') {
       this.campoLiberoSito = 'A';
@@ -147,7 +139,7 @@ export class ElencoOsservazioniPage extends BaseComponent{
 
   public setProtocolloFiltro(event) {
     if (event !== undefined) {
-      this.campoLiberoProtocollo = event.value;
+      this.campoLiberoProtocollo = event.target.value;
     }
     if (this.campoLiberoProtocollo === '') {
       this.campoLiberoProtocollo = 'A';
@@ -179,8 +171,7 @@ export class ElencoOsservazioniPage extends BaseComponent{
     this.goToPageParams('dashboard-osservazione',
       {
         queryParams: {
-          selectedOsservazione: JSON.stringify(osservazione),
-          callbackReload: this.reloadListaCallbackFunction
+          selectedOsservazione: JSON.stringify(osservazione)
         }
       });
     // this.navCtrl.push(DashboardOsservazionePage,
@@ -192,26 +183,22 @@ export class ElencoOsservazioniPage extends BaseComponent{
     this.goToPageParams('dashboard-osservazione',
       {
         queryParams: {
-          selectedOsservazione: undefined,
-          callbackReload: this.reloadListaCallbackFunction
+          selectedOsservazione: undefined
         }
       });
     // this.navCtrl.push(DashboardOsservazionePage, { selectedOsservazione: undefined, callbackReload: this.reloadListaCallbackFunction });
   }
 
-  reloadListaCallbackFunction = (reload, oss: Osservazione.Osservazione) => {
-    return new Promise((resolve, reject) => {
-      //  this.test = _params;
-      if (reload) {
-        this.numOsservazioni = 1;
-        this.getOsservazioni();
-      }
-      console.log('nuovaOssCallbackFunction ' + reload);
-      resolve();
-    });
-  }
+  // reloadListaCallbackFunction = (reload, oss: Osservazione.Osservazione) => {
+  //   return new Promise<void>((resolve, reject) => {
+  //     //  this.test = _params;
+  //     if (reload) {
+  //       this.numOsservazioni = 1;
+  //       this.getOsservazioni();
+  //     }
+  //     console.log('nuovaOssCallbackFunction ' + reload);
+  //     resolve();
+  //   });
+  // }
 
-  back() {
-    this.navCtrl.pop();
-  }
 }

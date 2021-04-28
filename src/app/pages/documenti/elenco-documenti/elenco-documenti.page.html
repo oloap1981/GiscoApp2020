@@ -10,8 +10,8 @@
       </div>
     </ion-buttons>
   </ion-toolbar>
-  <ion-searchbar placeholder="Ricerca sito..." (ionBlur)="setSitoFiltro($event)"></ion-searchbar>
-  <ion-searchbar placeholder="Ricerca..." (ionBlur)="setDocumentoFiltro($event)"></ion-searchbar>
+  <ion-searchbar placeholder="Ricerca sito..." (ionBlur)="setSitoFiltro($event)" color="primary"></ion-searchbar>
+  <ion-searchbar placeholder="Ricerca..." (ionBlur)="setDocumentoFiltro($event)" color="primary"></ion-searchbar>
 </ion-header>
 
 
@@ -25,10 +25,10 @@
       </ion-label>
     </ion-item>
     <ion-item *ngFor="let documento of listaDocumenti" (click)="goToDocumento($event, documento)" text-wrap>
-      <ion-thumbnail item-start>
+      <ion-thumbnail slot="start">
         <img src="/assets/imgs/ios-doc-icon.png">
       </ion-thumbnail>
-      <p>{{documento.doc_titolo}}<br><small>{{documento.tab_tipo_documento_desc}}</small></p>
+      <p style="font-weight: bold;">{{documento.doc_titolo}}<br><small>{{documento.tab_tipo_documento_desc}}</small></p>
       
     </ion-item>
   </ion-list>

@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+      <ion-title class="ion-text-center">Elenco Dispositivi</ion-title>
+  </ion-toolbar>
+  <ion-searchbar placeholder="Ricerca..." (ionBlur)="setDispositivoFiltro($event)" color="primary"></ion-searchbar>
+  <ion-item style="--border-style: none;" color="primary">
+      <ion-label>Tipologia</ion-label>
+      <ion-select [(ngModel)]="tipologiaSelezionata" (ionChange)="setDDLFiltro()">
+          <ion-select-option *ngFor="let tipologia of listaTipologie" [value]="tipologia">
+              {{tipologia.tab_tipo_dispositivo_desc}}</ion-select-option>
+      </ion-select>
+  </ion-item>
+  <ion-item style="--border-style: none;" color="primary">
+      <ion-label>Provincia</ion-label>
+      <ion-select [(ngModel)]="provinciaSelezionata" (ionChange)="setDDLFiltro()">
+          <ion-select-option *ngFor="let provincia of listaProvince" [value]="provincia">{{provincia.Descrizione}}
+          </ion-select-option>
+      </ion-select>
+  </ion-item>
+</ion-header>
+<ion-content>
+
+  <ion-list>
+      <ion-item *ngFor="let dispositivo of listaDispositivi" (click)="goToDetails($event, dispositivo)" text-wrap>
+          <a>
+              <h2>{{dispositivo.dis_titolo}}</h2>
+              <p>{{dispositivo.tab_tipo_dispositivo_desc}}</p>
+              <p class="indirizzo_sito">
+                {{dispositivo.az_codice_interno}} - {{dispositivo.az_ragione_sociale}}
+              </p>
+            </a>
+      </ion-item>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)" loadingSpinner="bubbles"
+    loadingText="Caricamento Dispositivi...">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

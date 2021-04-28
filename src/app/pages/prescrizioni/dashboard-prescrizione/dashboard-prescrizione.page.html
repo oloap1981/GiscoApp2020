@@ -1,0 +1,236 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+      <ion-title class="ion-text-center">Prescrizione</ion-title>
+  </ion-toolbar>
+  <ion-segment [(ngModel)]="whichPage">
+      <ion-segment-button value="Prescrizione" checked (ionSelect)="segmentPrescrizioneClicked($event)">
+          <ion-icon name="list"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="Allegati" (ionSelect)="segmentAllegatiClicked($event)">
+          <ion-icon name="document"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="Attività" (ionSelect)="segmentAttivitaClicked($event)" hidden>
+          <ion-icon name="locate"></ion-icon>
+      </ion-segment-button>
+  </ion-segment>
+
+</ion-header>
+
+<ion-content>
+  <div [ngSwitch]="whichPage">
+      <ion-list *ngSwitchCase="'Prescrizione'">
+          <div *ngIf="selectedPrescrizione">
+              <ion-list-header text-wrap>
+                  <h3>{{comunicazioneTitolo}}</h3>
+              </ion-list-header>
+              <ion-item text-wrap>
+                  <ion-grid no-padding>
+                      <ion-row>
+                          <ion-col>
+                              <p>Sito </p>
+                          </ion-col>
+                          <ion-col size="8" class="dato">
+                              <p>{{selectedPrescrizione.az_ragione_sociale}}</p>
+                          </ion-col>
+                      </ion-row>
+                  </ion-grid>
+              </ion-item>
+              <ion-item text-wrap>
+                  <ion-grid no-padding>
+                      <ion-row>
+                          <ion-col>
+                              <p>Descrizione </p>
+                          </ion-col>
+                          <ion-col size="8" class="dato">
+                              <p>{{selectedPrescrizione.pre_descrizione}}</p>
+                          </ion-col>
+                      </ion-row>
+                  </ion-grid>
+              </ion-item>
+              <ion-item text-wrap>
+                  <ion-grid no-padding>
+                      <ion-row>
+                          <ion-col>
+                              <p>Data </p>
+                          </ion-col>
+                          <ion-col size="8" class="dato">
+                              <p>{{selectedPrescrizione.pre_data_emissione | date:'dd/MM/yyyy'}}</p>
+                          </ion-col>
+                      </ion-row>
+                  </ion-grid>
+              </ion-item>
+              <ion-item text-wrap>
+                  <ion-grid no-padding>
+                      <ion-row>
+                          <ion-col>
+                              <p>Tipo </p>
+                          </ion-col>
+                          <ion-col size="8" class="dato">
+                              <p>{{selectedPrescrizione.tab_tipo_prescrizione_desc}}</p>
+                          </ion-col>
+                      </ion-row>
+                  </ion-grid>
+              </ion-item>
+              <ion-item text-wrap>
+                  <ion-grid no-padding>
+                      <ion-row>
+                          <ion-col>
+                              <p>Ente di controllo </p>
+                          </ion-col>
+                          <ion-col size="8" class="dato">
+                              <p>{{selectedPrescrizione.ec_nominativo}}</p>
+                          </ion-col>
+                      </ion-row>
+                  </ion-grid>
+              </ion-item>
+              <ion-item text-wrap>
+                  <ion-grid no-padding>
+                      <ion-row>
+                          <ion-col>
+                              <p>Vincolata </p>
+                          </ion-col>
+                          <ion-col size="8" class="dato">
+                              <p>{{selectedPrescrizione.pre_vincolata}}</p>
+                          </ion-col>
+                      </ion-row>
+                  </ion-grid>
+              </ion-item>
+              <ion-item text-wrap>
+                  <ion-grid no-padding>
+                      <ion-row>
+                          <ion-col>
+                              <p>Pre Capo Terzi </p>
+                          </ion-col>
+                          <ion-col size="8" class="dato">
+                              <p>{{selectedPrescrizione.pre_capo_terzi}}</p>
+                          </ion-col>
+                      </ion-row>
+                  </ion-grid>
+              </ion-item>
+              <ion-item text-wrap>
+                  <ion-grid no-padding>
+                      <ion-row>
+                          <ion-col>
+                              <p>Pre di rilevanza </p>
+                          </ion-col>
+                          <ion-col size="8" class="dato">
+                              <p>{{selectedPrescrizione.pre_di_rilevanza}}</p>
+                          </ion-col>
+                      </ion-row>
+                  </ion-grid>
+              </ion-item>
+              <ion-item text-wrap>
+                  <ion-grid no-padding>
+                      <ion-row>
+                          <ion-col>
+                              <p>Data di scadenza </p>
+                          </ion-col>
+                          <ion-col size="8" class="dato">
+                              <p *ngIf="!selectedPrescrizione.pre_data_scadenza.includes('0001')">
+                                  {{selectedPrescrizione.pre_data_scadenza | date:'dd/MM/yyyy'}}</p>
+                          </ion-col>
+                      </ion-row>
+                  </ion-grid>
+              </ion-item>
+              <ion-item text-wrap>
+                  <ion-grid no-padding>
+                      <ion-row>
+                          <ion-col>
+                              <p>Data di realizzazione </p>
+                          </ion-col>
+                          <ion-col size="8" class="dato">
+                              <p *ngIf="!selectedPrescrizione.pre_data_realizzazione.includes('0001')">
+                                  {{selectedPrescrizione.pre_data_realizzazione | date:'dd/MM/yyyy'}}</p>
+                          </ion-col>
+                      </ion-row>
+                  </ion-grid>
+              </ion-item>
+              <ion-item text-wrap>
+                  <ion-grid no-padding>
+                      <ion-row>
+                          <ion-col>
+                              <p>Note </p>
+                          </ion-col>
+                          <ion-col size="8" class="dato">
+                              <p>{{selectedPrescrizione.pre_note}}</p>
+                          </ion-col>
+                      </ion-row>
+                  </ion-grid>
+              </ion-item>
+          </div>
+      </ion-list>
+      <ion-list *ngSwitchCase="'Allegati'">
+          <ion-item color="primary-lighter" class="ion-section-title">
+              <ion-label>Files</ion-label>
+          </ion-item>
+          <ion-item *ngFor="let f of selectedPrescrizione.pre_files">
+              <ion-thumbnail slot="start">
+                  <a (click)="downloadFile(f)">
+                      <img src="/assets/imgs/ios-doc-icon.png">
+                  </a>
+              </ion-thumbnail>
+              <h3>{{f.prf_file}}</h3>
+          </ion-item>
+      </ion-list>
+      <ion-list *ngSwitchCase="'Attività'" hidden>
+          <ion-item color="primary-lighter" class="ion-section-title">
+              <ion-label>Attivita</ion-label>
+          </ion-item>
+          <div *ngFor="let a of selectedPrescrizione.pre_attivita">
+              <ion-item text-wrap>
+                  <ion-grid no-padding>
+                      <ion-row>
+                          <ion-col>
+                              <p>Titolo</p>
+                          </ion-col>
+                          <ion-col size="8" class="dato">
+                              <p>{{a.titolo}}</p>
+                          </ion-col>
+                      </ion-row>
+                  </ion-grid>
+              </ion-item>
+              <ion-item text-wrap>
+                  <ion-grid no-padding>
+                      <ion-row>
+                          <ion-col>
+                              <p>Tipologia</p>
+                          </ion-col>
+                          <ion-col size="8" class="dato">
+                              <p>{{a.tipologia}}</p>
+                          </ion-col>
+                      </ion-row>
+                  </ion-grid>
+              </ion-item>
+              <ion-item text-wrap>
+                  <ion-grid no-padding>
+                      <ion-row>
+                          <ion-col>
+                              <p>Fine</p>
+                          </ion-col>
+                          <ion-col size="8" class="dato">
+                              <p>{{a.fine}}</p>
+                          </ion-col>
+                      </ion-row>
+                  </ion-grid>
+              </ion-item>
+              <ion-item text-wrap>
+                  <ion-grid no-padding>
+                      <ion-row>
+                          <ion-col>
+                              <p>Stato</p>
+                          </ion-col>
+                          <ion-col size="8" class="dato">
+                              <ion-icon name="alert" color="danger"></ion-icon>
+                              <!--<p>{{a.stato}}</p>-->
+                          </ion-col>
+                      </ion-row>
+                  </ion-grid>
+              </ion-item>
+          </div>
+      </ion-list>
+  </div>
+
+</ion-content>

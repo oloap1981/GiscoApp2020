@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+      <ion-title class="ion-text-center">Messaggi Uscita</ion-title>
+  </ion-toolbar>
+  <ion-searchbar placeholder="Ricerca..." (ionBlur)="setMessaggiFiltro($event)" color="primary"></ion-searchbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+
+      <ion-item-sliding *ngFor="let mess of listaMessaggi">
+          <ion-item text-wrap (click)="goToDetails(mess)">
+              <ion-avatar slot="start">
+                  <img src="../assets/imgs/thumb-user.png">
+                  <!--<img src="{{mess.url_avatar}}">-->
+              </ion-avatar>
+              <ion-label>
+                <h3>{{mess.cognome_des}} {{mess.nome_des}}</h3>
+                <p class="anteprima_mess titolo">{{mess.soggetto}}</p>
+                <p class="anteprima_mess">{{mess.data | date:'dd/MM/yyyy HH:mm'}}</p>
+            </ion-label>
+          </ion-item>
+          <ion-item-options side="start">
+              <button ion-button expandable class="danger" (click)="deleteConfirm(mess)">
+                  <ion-icon name="trash"></ion-icon>
+                  Cestino
+              </button>
+          </ion-item-options>
+          <ion-item-options side="end">
+              <button ion-button expandable class="future" (click)="goToDetails(mess)">
+                  <ion-icon name="eye"></ion-icon>
+                  Leggi
+              </button>
+          </ion-item-options>
+      </ion-item-sliding>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)" loadingSpinner="bubbles"
+      loadingText="Caricamento Messaggi...">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
+<ion-footer class="ion-text-center">
+  <ion-toolbar color="primary">
+      <ion-grid>
+          <ion-row text-center>
+              <ion-col (click)="goToNuovoMessaggio()">
+                  <ion-icon name="create" style="font-size: 2em;"></ion-icon><br>
+                  Nuovo
+              </ion-col>
+              <ion-col (click)="goToIngressoMessaggi()">
+                  <ion-icon name="mail" style="font-size: 2em;"></ion-icon><br>
+                  Ingresso
+              </ion-col>
+              <ion-col (click)="goToImportantiMessaggi()">
+                  <ion-icon name="star" style="font-size: 2em;"></ion-icon><br>
+                  Importanti
+              </ion-col>
+              <ion-col (click)="goToCestinoMessaggio()">
+                  <ion-icon name="trash" style="font-size: 2em;"></ion-icon><br>
+                  Cestino
+              </ion-col>
+          </ion-row>
+      </ion-grid>
+  </ion-toolbar>
+</ion-footer>

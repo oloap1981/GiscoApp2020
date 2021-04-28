@@ -239,8 +239,7 @@ export class HomePage extends BaseComponent {
     this.goToPageParams('dashboard-attivita',
       {
         queryParams: {
-          selectedAttivita: attivita,
-          callbackChiusa: false
+          selectedAttivita: JSON.stringify(attivita)
         }
       });
     // this.navCtrl.push(DashboardAttivitaPage, {

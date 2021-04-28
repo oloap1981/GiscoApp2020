@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Elenco Attivit&agrave;</ion-title>
+  </ion-toolbar>
+  <ion-searchbar placeholder="Ricerca sito..." (ionBlur)="setSitoFiltro($event)" color="primary"></ion-searchbar>
+  <ion-searchbar placeholder="Ricerca..." (ionBlur)="setProtocolloFiltro($event)" color="primary"></ion-searchbar>
+  <ion-item style="--border-style: none;" color="primary">
+      <ion-label>Categoria</ion-label>
+      <ion-select [(ngModel)]="categoriaSelezionata" (ionChange)="setCategoriaFiltro()">
+          <ion-select-option *ngFor="let categoria of listaCategorie" [value]="categoria">
+              {{categoria.tab_tipo_attivita_desc}}</ion-select-option>
+      </ion-select>
+  </ion-item>
+  <ion-item style="--border-style: none;" color="primary">
+      <ion-label>Tipologia</ion-label>
+      <ion-select [(ngModel)]="tipologiaSelezionata" (ionChange)="setTipologiaFiltro()">
+          <ion-select-option *ngFor="let tipologia of listaTipologie" [value]="tipologia">
+              {{tipologia.tab_tipo_scadenza_desc}}</ion-select-option>
+      </ion-select>
+  </ion-item>
+  <ion-item style="--border-style: none;" color="primary">
+      <ion-label>Stato</ion-label>
+      <ion-select [(ngModel)]="statoSelezionato" (ionChange)="setStatoFiltro()">
+          <ion-select-option [value]="'N'" selected>Aperte</ion-select-option>
+          <ion-select-option [value]="'S'">Chiuse</ion-select-option>
+          <ion-select-option [value]="'A'">Tutte</ion-select-option>
+      </ion-select>
+  </ion-item>
+</ion-header>
+<ion-content>
+  <ion-list>
+      <ion-item *ngFor="let attivita of listaAttivita" (click)="goToDetails(attivita)" text-wrap no-padding>
+          <a>
+              <h2><img [src]="getDotPath(attivita)"
+                      class="attivita-dot">{{attivita.att_protocollo + ' - ' + attivita.att_titolo}}</h2>
+              <p>{{attivita.tab_tipo_attivita_desc + ' - ' + attivita.tab_tipo_scadenza_desc}}</p>
+              <p class="indirizzo_sito">{{attivita.az_codice_interno + ' - ' + attivita.az_ragione_sociale}}</p>
+              <p>Da realizzarsi entro il {{get_data_scadenza(attivita) | date:'dd/MM/yyyy'}}</p>
+          </a>
+      </ion-item>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)" loadingSpinner="bubbles"
+      loadingText="Caricamento Attività...">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

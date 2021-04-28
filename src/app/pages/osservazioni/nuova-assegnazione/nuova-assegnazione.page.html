@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+      <ion-buttons slot="end">
+          <div class="icon-section">
+              <i [ngClass]="icon" [ngStyle]="{'color' : color }"></i>
+          </div>
+      </ion-buttons>
+      <ion-title class="ion-text-center">Nuova Assegnazione</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item color="primary-lighter" class="ion-section-title">
+      <ion-label>Nuova assegnazione</ion-label>
+    </ion-item>
+    <ion-item>
+        <ion-label position="stacked">Nominativo</ion-label>
+        <ionic-selectable item-content [(ngModel)]="nominativoSelezionato" [items]="listaNominativi" 
+          itemTextField="nomeCognome" [canSearch]="true" (onSearch)="nominativoChange($event)" 
+          searchPlaceholder="Ricerca...">
+        </ionic-selectable>
+    </ion-item>
+    <ion-item>
+        <ion-label>Responsabile</ion-label>
+        <ion-toggle [(ngModel)]="responsabile" [checked]="isResponsabile"></ion-toggle>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
+<ion-footer class="ion-text-center">
+  <ion-toolbar color="primary">
+      <ion-grid>
+          <ion-row text-center>
+              <ion-col (click)="salvaAssegnazione()">
+                  <ion-icon name="person-circle-outline" style="font-size: 2em;"></ion-icon><br>Salva osservazione
+              </ion-col>
+          </ion-row>
+      </ion-grid>
+  </ion-toolbar>
+</ion-footer>

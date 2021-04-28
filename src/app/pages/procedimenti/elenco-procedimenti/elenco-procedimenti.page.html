@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Elenco Procedimenti&agrave;</ion-title>
+  </ion-toolbar>
+  <ion-searchbar placeholder="Ricerca sito..." (ionBlur)="setSitoFiltro($event)" color="primary"></ion-searchbar>
+  <ion-searchbar placeholder="Ricerca..." (ionBlur)="setTitoloFiltro($event)" color="primary"></ion-searchbar>
+  <ion-item style="--border-style: none;" color="primary">
+      <ion-label>Tipologia</ion-label>
+      <ion-select [(ngModel)]="tipologiaSelezionata" (ionChange)="setTipologiaFiltro()">
+          <ion-select-option *ngFor="let tipologia of listaTipologie" [value]="tipologia">
+              {{tipologia.tab_tipo_procedimento_desc}}</ion-select-option>
+      </ion-select>
+  </ion-item>
+</ion-header>
+<ion-content>
+  <ion-list>
+      <ion-item *ngFor="let procedimento of listaProcedimenti" (click)="goToDetails($event, procedimento)" text-wrap
+          no-padding>
+          <a>
+              <h2>{{procedimento.pro_titolo}}</h2>
+              <p>{{procedimento.tab_tipo_procedimento_desc}}</p>
+              <p class="indirizzo_sito">{{procedimento.az_codice_interno}} - {{procedimento.az_ragione_sociale}}</p>
+          </a>
+      </ion-item>
+  </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)" loadingSpinner="bubbles"
+      loadingText="Caricamento Procedimenti...">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

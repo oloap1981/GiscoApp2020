@@ -1,4 +1,4 @@
-import { Component, NgZone, ViewChild } from '@angular/core';
+import { Component, NgZone} from '@angular/core';
 import { NavController, NavParams, LoadingController, ActionSheetController, AlertController } from '@ionic/angular';
 
 import { StoreService } from '../../../services/store/store.service';
@@ -57,7 +57,6 @@ export class DashboardOsservazionePage extends BaseComponent{
   color: string;
   icon: string;
 
-  private callbackReload: any;
   private reloadOsservazioni: boolean;
   private dataRilevazione: string;
   public conclusa: boolean;
@@ -91,19 +90,7 @@ export class DashboardOsservazionePage extends BaseComponent{
       } else {
         this.isInserimento = true;
       }
-      const callbackReloadString = params['callbackReload'];
-      if (callbackReloadString && callbackReloadString !== '') {
-        this.callbackReload = JSON.parse(callbackReloadString) as Osservazione.Osservazione;
-      }
     });
-
-    // this.selectedOsservazione = this.navParams.get('selectedOsservazione');
-    // if (this.selectedOsservazione === undefined) {
-    //   this.isInserimento = true;
-    // } else {
-    //   this.isInserimento = false;
-    // }
-    this.callbackReload = this.navParams.get('callbackReload');
 
     this.ws_Oss = new Osservazione.ws_Osservazione();
     this.whichPage = 'Osservazione';
@@ -352,16 +339,6 @@ export class DashboardOsservazionePage extends BaseComponent{
     });
   }
 
-  back() {
-    if (this.reloadOsservazioni !== undefined && this.callbackReload !== undefined) {
-      this.callbackReload(this.reloadOsservazioni).then(() => {
-        this.navCtrl.pop();
-      });
-    } else {
-      this.navCtrl.pop();
-    }
-  }
-
   public salvaOsservazione() {
     console.log('this.dataRilevazione ' + this.dataRilevazione);
 
@@ -423,19 +400,8 @@ export class DashboardOsservazionePage extends BaseComponent{
 
   chiudiOsservazione() {
     this.goToPageParams('dashboard-chiusura',
-    { queryParams: { osservazione: this.selectedOsservazione, callbackChiusa: this.chiudiCallbackFunction } });
+    { queryParams: { osservazione: JSON.stringify(this.selectedOsservazione)} });
     // this.navCtrl.push(DashboardChiusuraPage, { osservazione: this.selectedOsservazione, callbackChiusa: this.chiudiCallbackFunction });
-  }
-
-  public chiudiCallbackFunction = (chiudi) => {
-    return new Promise((resolve, reject) => {
-      //  this.test = _params;
-      if (chiudi) {
-        this.selectedOsservazione.att_conclusa = 'S';
-        this.conclusa = true;
-      }
-      resolve();
-    });
   }
 
   segmentOsservazioneClicked(event) {
@@ -452,7 +418,7 @@ export class DashboardOsservazionePage extends BaseComponent{
 
   async presentImmagineActionSheet() {
     const actionSheet = await this.actionSheetCtrl.create({
-      header: 'Modifica avatar',
+      header: 'Aggiungi immagine',
       buttons: [
         {
           text: 'Galleria',
@@ -618,7 +584,7 @@ export class DashboardOsservazionePage extends BaseComponent{
         if (r.ErrorMessage.msg_code === 0) {
           console.log(r);
           this.listaAssegnazioni.splice(this.listaAssegnazioni.indexOf(assegnazione), 1);
-          this.presentAlert('', 'Assegnazione eliminata');
+          this.presentAlertEliminata('', 'Assegnazione eliminata');
         }
       },
         (error) => {
@@ -633,8 +599,7 @@ export class DashboardOsservazionePage extends BaseComponent{
     } else {
       this.goToPageParams('nuova-assegnazione',
         { queryParams: {
-          osservazione: this.selectedOsservazione,
-          callbackReload: this.reloadOsservazioneCallbackFunction,
+          osservazione: JSON.stringify(this.selectedOsservazione),
           idSitoSelected: this.idSitoSelected } });
 
       // this.navCtrl.push(NuovaAssegnazionePage, { osservazione: this.selectedOsservazione,
@@ -643,8 +608,8 @@ export class DashboardOsservazionePage extends BaseComponent{
 
   }
 
-  reloadOsservazioneCallbackFunction = (result_key, oss: Osservazione.Osservazione) => {
-    return new Promise((resolve, reject) => {
+  public reloadOsservazioneCallbackFunction = (result_key, oss: Osservazione.Osservazione) => {
+    return new Promise<void>((resolve, reject) => {
       //  this.test = _params;
       this.getOsservazione(result_key);
       resolve();
@@ -686,7 +651,6 @@ export class DashboardOsservazionePage extends BaseComponent{
         if (r.ErrorMessage.msg_code === 0) {
           console.log(r);
           this.reloadOsservazioni = true;
-          this.back();
           this.presentAlert('', 'osservazione eliminata');
         }
       },
@@ -760,6 +724,21 @@ export class DashboardOsservazionePage extends BaseComponent{
     alert.present();
   }
 
+  async presentAlertEliminata(title: string, mess: string) {
+    const alert = await this.alertCtrl.create({
+      header: '',
+      subHeader: mess,
+      buttons: [{
+          text: 'OK',
+          handler: () => {
+            this.goToPage('elenco-osservazioni')
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
   hideDate(dateString: string) {
     const date = new Date(dateString);
     return date.getFullYear() === 1;
@@ -775,7 +754,7 @@ export class DashboardOsservazionePage extends BaseComponent{
     mess.messaggio = '';
     this.goToPageParams('nuovo-messaggio',
       {
-        queryParams: { invio: mess }
+        queryParams: { invio: JSON.stringify(mess) }
       });
     // this.navCtrl.push(NuovoMessaggioPage, { invio: mess });
   }
